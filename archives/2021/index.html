@@ -1,267 +1,411 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html  lang="zh-CN" >
 <head>
-    <meta charset="utf-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-<!--Description-->
-
-
-
-
-<!--Author-->
-
-    <meta name="author" content="songnan"/>
-
-
-<!--Open Graph Title-->
-
-    <meta property="og:title" content="我的博客"/>
-
-
-<!--Open Graph Description-->
-
-
-<!--Open Graph Site Name-->
-    <meta property="og:site_name" content="我的博客"/>
-
-<!--Type page-->
-
-    <meta property="og:type" content="website"/>
-
-
-<!--Page Cover-->
-
-
-    <meta property="og:image" content="http://songnan05.gitee.io/img/home-bg.jpg"/>
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-
-
-
-
-    <meta name="twitter:image" content="http://songnan05.gitee.io/img/home-bg.jpg"/>
-
-
-<!-- Title -->
-
-<title>归档：2021 | 我的博客</title>
-
-<!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
-
-<!-- Custom CSS -->
-
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#fff" id="theme-color">
+  <meta name="description" content="我的博客">
+  <link rel="icon" href="https://pic3.zhimg.com/v2-1ab107e957b62f7921c4f491e36d55fd_xl.jpg">
+  <title>归档</title>
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+    var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+      }
+    };
+    setDarkmode();
+  </script>
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  </script>
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  <link rel="prefetch" href="//cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-svg.js" as="script">
+  
+  
+  
+  <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
+  
+  
+  
+  
 <link rel="stylesheet" href="/my_-blog/css/main.css">
 
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
 
-<!-- Custom Fonts -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
-<link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
-<link href="//fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
-
-<!-- Gallery -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/featherlight@1.4.0/src/featherlight.css" integrity="sha256-30DV/STftlyQ6v8yaOWlabammvCYtRJERLj/m0b3zno=" crossorigin="anonymous">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/css/lightgallery.min.css">
-
-<!-- favicon -->
-
-<link rel="icon" href="/my_-blog/img/favicon.png"/>
-
-
-
-    <!-- Google Analytics -->
-    
-
-
+  
+  
+  
+  
 <meta name="generator" content="Hexo 5.3.0"></head>
-<!-- Head tag -->
+
 
 <body>
-
-    <!-- Menu -->
-    <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top bg-transparent position-absolute w-100 p-0" id="nav">
-    <div class="container pl-0 pr-0">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <a class="navbar-brand text-white p-1 pl-3" href="/my_-blog/">我的博客</a>
-        </div>
-        <div class="navbar-nav float-right">
-            <button class="btn btn-link search-btn navbar-item" data-toggle="modal" data-target="#searchModal">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-    </div>
-    <!-- /.container -->
+  <div class="wrapper">
+    
+    <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+      <img class="navbar-logo-img" src="https://pic3.zhimg.com/v2-1ab107e957b62f7921c4f491e36d55fd_xl.jpg" alt="logo">
+      
+      <span class="navbar-logo-dsc">宋楠的博客</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+    <a href="/" class="navbar-menu-item">
+    
+    首页
+    
+    </a>
+    
+    <a href="" class="navbar-menu-item">
+    
+    友链
+    
+    </a>
+    
+    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
+    <a class="navbar-menu-item searchnavbar" id="search"><i class="iconfont icon-search" style="font-size: 1.2rem; font-weight: 400;"></i></a>
+  </div>
 </nav>
-
-    <!-- Main Content -->
     
+    <div id="local-search" style="display: none;">
+      <input class="navbar-menu-item" id="search-input" placeholder="请输入搜索内容...">
+      <div id="search-content"></div>
+    </div>
+    
+    <div class="section-wrap">
+      <div class="container">
+        <div class="columns">
+          <main class="main-column">
+<div class="card card-content">
+  <h1 class="widget-title">归档</h1>
+</div>
+<div class="archive-timeline">
+  
+  
+  
+  <div class="archive-timeline-tag"><span>2021</span></div>
+  
+  
+  <div class="archive-timeline-item">
+    <div class="archive-timeline-post">
+      <div class="card card-content">
+        <div class="archive-timeline-post-date">2021-02-13</div>
+        <div class="archive-timeline-post-content"><a href="/2021/02/13/我的第一篇文章/"
+            class="archive-timeline-post-item">我的第一篇文章</a></div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="archive-timeline-item">
+    <div class="archive-timeline-post">
+      <div class="card card-content">
+        <div class="archive-timeline-post-date">2021-02-13</div>
+        <div class="archive-timeline-post-content"><a href="/2021/02/13/hello-world/"
+            class="archive-timeline-post-item">Hello World</a></div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+</main>
+          <aside class="left-column">
+            
+            <div class="card card-author">
+              
+<img src="https://pic3.zhimg.com/v2-1ab107e957b62f7921c4f491e36d55fd_xl.jpg" class="author-img">
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
-<header class="intro-header" style="background-image: url('/my_-blog/img/home-bg.jpg')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-                <div class="site-heading text-center text-white">
-                    <h1>2021</h1>
-                </div>
+<p class="author-name">宋楠</p>
+<p class="author-description">记录自己 记录人生</p>
+<div class="author-message">
+  <a class="author-posts-count" href="/archives">
+    <span>2</span>
+    <span>文章</span>
+  </a>
+  <a class="author-categories-count" href="/categories">
+    <span>0</span>
+    <span>分类</span>
+  </a>
+  <a class="author-tags-count" href="/tags">
+    <span>0</span>
+    <span>标签</span>
+  </a>
+</div>
+
             </div>
-        </div>
-    </div>
-</header>
-
-<!-- Main Content -->
-<div class="container page-archives">
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center mb-5">
-            <div class="btn-group archives-filter-group" role="group" aria-label="archives filter">
-    
-
-    
-        
-            <button type="button" class="btn btn-info" disabled>
-                2021
-            </button>
-        
-    
-</div>
-
-    <a class="btn btn-light archives-filter-all" href="/my_-blog/archives/" role="button">
-        All    
-        <span class="badge badge-secondary">2</span>
-    </a>
- 
-        </div>
-        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
             
-                <div class="post-preview post-preview-archive-archive">
-    <a href="/my_-blog/2021/02/13/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">
-        <h1 class="post-title">
-            我的第一篇文章
-        </h1>
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2021-02-13
-    </p>
+            <div class="sticky-tablet">
+  
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>分类</div>
+  <div class="categories-list">
+    
+  </div>
 </div>
-            
-                <div class="post-preview post-preview-archive-archive">
-    <a href="/my_-blog/2021/02/13/hello-world/">
-        <h1 class="post-title">
-            Hello World
-        </h1>
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2021-02-13
-    </p>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>热门标签</div>
+  <div class="tags-list">
+    
+  </div>
 </div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pagination d-block text-center">
+  </article>
+  
+  
+  <article class="card card-content widescreen-archive archive-widget">
+    <div class="archive-card">
+  <div class="archive-card-header"><i class="iconfont icon-wodebaobiao" style="padding-right: 2px;"></i>归档</div>
+  <div class="archive-card-list">
     
     
-</ul>
+    
+      
+        
+        
+        
+      
+    
+      
+        
+      
+    
+    
+      <a href="/archives/2021" class="archive-card-list-item">
+          2021
+          <span class="archive-card-list-item-badge">2</span>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+    <div class="card card-content categories-widget">
+    <div>
+     <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=1413374282&auto=1&height=66"></iframe>
+    </div>
+     
+    </div>
+
+</div>
+
+          </aside>
+          <aside class="right-column">
+            <div class="sticky-widescreen">
+  
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>最近文章</div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-02-13</div>
+        <a href="/2021/02/13/我的第一篇文章/"><div class="recent-posts-item-content">我的第一篇文章</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-02-13</div>
+        <a href="/2021/02/13/hello-world/"><div class="recent-posts-item-content">Hello World</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+  <article class="card card-content">
+    <div class="archive-card">
+  <div class="archive-card-header"><i class="iconfont icon-wodebaobiao" style="padding-right: 2px;"></i>归档</div>
+  <div class="archive-card-list">
+    
+    
+    
+      
+        
+        
+        
+      
+    
+      
+        
+      
+    
+    
+      <a href="/archives/2021" class="archive-card-list-item">
+          2021
+          <span class="archive-card-list-item-badge">2</span>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+</div>
+          </aside>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>Copyright ©
+          
+          2020 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a href="/" class="footer-link">宋楠的博客 </a>
+      </div>
+    </div>
 
-
-    <!-- Footer -->
-    <hr />
-
-<!-- Footer -->
-<footer id="footer">
-    <div class="container">
-    <div class="row">
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<div class="powered-by col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center">
-  <i class="fa fa-user-md"></i>
-  <span id="busuanzi_container_site_pv">
-    本站访问量:<span id="busuanzi_value_site_pv"></span>次
-  </span>
-  <span class="post-meta-divider">|</span>
-  <span id="busuanzi_container_site_uv">
-    本站总访客量：<span id="busuanzi_value_site_uv"></span>人
-  </span>
-</div>
     
-    </div>
-       
-    </div>
+    <div class="footer-dsc">
 
+
+    </div>
+    
+    
+    
+    
+      <div class="footer-dsc">
+        
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+        
+        <span>&nbsp;|&nbsp;</span>
+        
+        
+        本站总访客数<span id="busuanzi_value_site_uv"></span>次
+        
+      </div>
+      
+    
 </footer>
 
+  <a role="button" id="scrollbutton" class="basebutton"  aria-label="回到顶部">
+  <i class="iconfont icon-arrowleft button-icon"></i>
+</a>
+<a role="button" id="menubutton" class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a role="button" id="popbutton" class="basebutton" aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a role="button" id="darkbutton" class="basebutton darkwidget" aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a role="button" id="searchbutton" class="basebutton searchwidget" aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a>
 
+  
+  
+  
 
-    <!-- After footer scripts -->
-    <!-- jQuery -->
-<script src="//cdn.jsdelivr.net/npm/jquery@2.1.4/dist/jquery.min.js"></script>
-
-<!-- For drop down -->
-<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-
-<!-- Bootstrap -->
-<script src="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
-<!-- Gallery -->
-<script src="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/js/lightgallery-all.min.js"></script>
-<!-- Busuanzi -->
-
-
-<!-- Search script -->
-
-<script src="/my_-blog/js/search.js"></script>
-
-<script type="text/javascript">
-    $(function () {
-        searchFunc( '/my_-blog/search.xml' , 'searchInput', 'searchResult');
-    });
-</script>
-
-
-
+  
+  
+  
+  
 <script src="/my_-blog/js/main.js"></script>
 
-
-
-    <!-- Search Modal -->
-    <!-- Modal -->
-<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-        <div class="modal-content overflow-auto">
-            <div class="modal-header">
-                <input type="text" class="form-control" placeholder="搜索关键词..." id="searchInput">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="modal-body">
-                <div id="searchResult">
-                    <div class="search-empty text-center text-muted p-5">
-                        <i class="far fa-meh"></i>
-                    </div>
-                </div>
-            </div> 
-        </div>
-    </div>
-</div>
-
-
+  
+  <script>loadScript("/js/lib/busuanzi.min.js")</script>
+  
+  
+  <script>
+    var addLazyload = function () {
+      var observer = lozad('.lozad', {
+        load: function (el) {
+          el.srcset = el.getAttribute('data-src');
+        },
+        loaded: function (el) {
+          el.classList.add('loaded');
+        }
+      });
+      observer.observe();
+    }
+  </script>
+  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
+  
+  
 </body>
+
 </html>

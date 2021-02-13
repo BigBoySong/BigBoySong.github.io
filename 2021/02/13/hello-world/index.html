@@ -1,318 +1,444 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html  lang="zh-CN" >
 <head>
-    <meta charset="utf-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-<!--Description-->
-
-
-
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in "/>
-
-
-<!--Author-->
-
-    <meta name="author" content="songnan"/>
-
-
-<!--Open Graph Title-->
-
-    <meta property="og:title" content="Hello World"/>
-
-
-<!--Open Graph Description-->
-
-    <meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in "/>
-
-
-<!--Open Graph Site Name-->
-    <meta property="og:site_name" content="我的博客"/>
-
-<!--Type page-->
-
-    <meta property="og:type" content="article"/>
-
-
-<!--Page Cover-->
-
-
-    <meta property="og:image" content="http://songnan05.gitee.io/img/home-bg.jpg"/>
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-
-
-
-
-    <meta name="twitter:image" content="http://songnan05.gitee.io/img/home-bg.jpg"/>
-
-
-<!-- Title -->
-
-<title>Hello World | 我的博客</title>
-
-<!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
-
-<!-- Custom CSS -->
-
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#fff" id="theme-color">
+  <meta name="description" content="我的博客">
+  <link rel="icon" href="https://pic3.zhimg.com/v2-1ab107e957b62f7921c4f491e36d55fd_xl.jpg">
+  <title>Hello World</title>
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+    var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+      }
+    };
+    setDarkmode();
+  </script>
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  </script>
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+  <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  <link rel="prefetch" href="//cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-svg.js" as="script">
+  
+  
+  
+  <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
+  
+  
+  
+  
 <link rel="stylesheet" href="/my_-blog/css/main.css">
 
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
 
-<!-- Custom Fonts -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
-<link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
-<link href="//fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+  
+  
+<link rel="stylesheet" href="/my_-blog/js/lib/lightbox/baguetteBox.min.css">
 
-<!-- Gallery -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/featherlight@1.4.0/src/featherlight.css" integrity="sha256-30DV/STftlyQ6v8yaOWlabammvCYtRJERLj/m0b3zno=" crossorigin="anonymous">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/css/lightgallery.min.css">
-
-<!-- favicon -->
-
-<link rel="icon" href="/my_-blog/img/favicon.png"/>
-
-
-
-    <!-- Google Analytics -->
-    
-
-
+  
+  
+  
+  
 <meta name="generator" content="Hexo 5.3.0"></head>
-<!-- Head tag -->
+
 
 <body>
-
-    <!-- Menu -->
-    <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top bg-transparent position-absolute w-100 p-0" id="nav">
-    <div class="container pl-0 pr-0">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <a class="navbar-brand text-white p-1 pl-3" href="/my_-blog/">我的博客</a>
-        </div>
-        <div class="navbar-nav float-right">
-            <button class="btn btn-link search-btn navbar-item" data-toggle="modal" data-target="#searchModal">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-    </div>
-    <!-- /.container -->
+  <div class="wrapper">
+    
+    <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+      <img class="navbar-logo-img" src="https://pic3.zhimg.com/v2-1ab107e957b62f7921c4f491e36d55fd_xl.jpg" alt="logo">
+      
+      <span class="navbar-logo-dsc">宋楠的博客</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+    <a href="/" class="navbar-menu-item">
+    
+    首页
+    
+    </a>
+    
+    <a href="" class="navbar-menu-item">
+    
+    友链
+    
+    </a>
+    
+    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
+    <a class="navbar-menu-item searchnavbar" id="search"><i class="iconfont icon-search" style="font-size: 1.2rem; font-weight: 400;"></i></a>
+  </div>
 </nav>
-
-    <!-- Main Content -->
-    <!-- Page Header -->
-<!-- Set your background image for this header in your post front-matter: cover -->
-
-<header class="intro-header" style="background-image: url('/my_-blog/img/home-bg.jpg')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 text-center">
-                <div class="post-heading text-white">
-                    <h1>Hello World</h1>
-                    
-                </div>
-            </div>
-        </div>
+    
+    <div id="local-search" style="display: none;">
+      <input class="navbar-menu-item" id="search-input" placeholder="请输入搜索内容...">
+      <div id="search-content"></div>
     </div>
-</header>
-
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-            <!-- Post Main Content -->
-            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-                
-                    <span class="meta d-inline-block">
+    
+    <div class="section-wrap">
+      <div class="container">
+        <div class="columns">
+          <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      Hello World
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2021-02-13T11:00:20.540Z">
+      <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+      <span>2021-02-13</span>
+    </time>
     
     
-    <!-- Date -->
+    <span class="dot"></span>
+    <span>75 字</span>
     
-        <span class="post-meta-split">&nbsp;|&nbsp;</span>
-        <i class="far fa-calendar-check fa-fw"></i>
-        2021-02-13
-    
-    <!-- word count and read count -->
-    
-
-    
-
-    
-</span>  
-                
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+  </div>
+  
+  </header>
+  <div id="section" class="post-content">
+    <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="highlight"><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="highlight"><span class="line">$ hexo server</span><br></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="highlight"><span class="line">$ hexo generate</span><br></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="highlight"><span class="line">$ hexo deploy</span><br></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
-            </div>
-
-            <!-- Post information -->
-            
-            
-    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-        <ul class="pagination d-block text-center">
-            
-                <li class="previous page-item d-inline"><a href="/my_-blog/2021/02/13/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="page-link float-left">&larr;  下一页</a></li>
-            
-            
-        </ul>
-    </div>
-
-
-            
-                <!-- Comments -->
-                
-
-                
-
-            
-
-        </div>
-    </div>
-</article> 
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-    <style>
-        #toc-content .toc-link::before {
-            background-color: transparent;
-            max-height: 25px;
-        }
-
-        #toc-content .toc-link.is-active-link::before {
-            background-color: #404040;
-        }
-    </style>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
-    <div class="ui-toc dropup scrollspy-body pull-right" style="right: 3%;">
-        <button type="button" class="toc-btn btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-            <i class="fas fa-list"></i>
-        </button>
-        <div class="dropdown-menu dropdown-menu-right p-2"  aria-labelledby="tocLabel">
-            <div class="toc-widget">
-                <div id="toc-content" class="text-truncate">
-                </div>
-            </div>
-            <div class="toc-menu pt-3 pl-4">
-                <a class="expand-toggle d-block py-1" href="#"><span class="expand-text">全部展开</span><span class="close-text" style="display: none;">全部收起</span></a>
-                <a class="back-to-top d-block py-1" href="#">回到顶部</a>
-                <a class="go-to-bottom d-block py-1" href="#">移至底部</a>
-            </div>
-        </div>
-    </div>
-    <script>
-        tocbot.init({
-            // Where to render the table of contents.
-            tocSelector: '#toc-content',
-            // Where to grab the headings to build the table of contents.
-            contentSelector: 'article',
-            // Which headings to grab inside of the contentSelector element.
-            headingSelector: 'h1, h2, h3',
-            // For headings inside relative or absolute positioned containers within content.
-            hasInnerContainers: true,
-        });
-    </script>
-
-
-    
-
-
-    <!-- Footer -->
-    <hr />
-
-<!-- Footer -->
-<footer id="footer">
-    <div class="container">
-    <div class="row">
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<div class="powered-by col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center">
-  <i class="fa fa-user-md"></i>
-  <span id="busuanzi_container_site_pv">
-    本站访问量:<span id="busuanzi_value_site_pv"></span>次
-  </span>
-  <span class="post-meta-divider">|</span>
-  <span id="busuanzi_container_site_uv">
-    本站总访客量：<span id="busuanzi_value_site_uv"></span>人
-  </span>
+  </div>
+  <div>
+  
+  <div class="post-note note-warning copyright" style="margin-top: 42px">
+    <p><span style="font-weight: bold;">作者：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://songnan05.gitee.io/about">宋楠</a></p>
+    <p><span style="font-weight: bold;">文章链接：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://songnan05.gitee.io/2021/02/13/hello-world/">http://songnan05.gitee.io/2021/02/13/hello-world/</a></p>
+    <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+  </div>
+  
+  </div>
+</article>
+<div class="nav">
+  
+  <div class="nav-item-prev">
+    <a href="/2021/02/13/我的第一篇文章/" class="nav-link">
+      <i class="iconfont icon-left nav-prev-icon"></i>
+      <div>
+        <div class="nav-label">上一篇</div>
+        
+        <div class="nav-title">我的第一篇文章 </div>
+        
+      </div>
+    </a>
+  </div>
+  
+  
 </div>
-    
+
+<div class="card card-content comment-card" style="margin-top: 16px;">
+  <div class="comment-card-title">评论</div>
+  
+</div>
+
+<div class="card card-content toc-card" id="mobiletoc">
+  <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>目录</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+</div></main>
+          <aside class="left-column">
+            
+            <div class="card card-author">
+              
+<img src="https://pic3.zhimg.com/v2-1ab107e957b62f7921c4f491e36d55fd_xl.jpg" class="author-img">
+
+<p class="author-name">宋楠</p>
+<p class="author-description">记录自己 记录人生</p>
+<div class="author-message">
+  <a class="author-posts-count" href="/archives">
+    <span>2</span>
+    <span>文章</span>
+  </a>
+  <a class="author-categories-count" href="/categories">
+    <span>0</span>
+    <span>分类</span>
+  </a>
+  <a class="author-tags-count" href="/tags">
+    <span>0</span>
+    <span>标签</span>
+  </a>
+</div>
+
+            </div>
+            
+            <div class="sticky-tablet">
+  
+  
+  <article class="display-when-two-columns spacer">
+    <div class="card card-content toc-card">
+      <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>目录</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
     </div>
-       
+  </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>分类</div>
+  <div class="categories-list">
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>热门标签</div>
+  <div class="tags-list">
+    
+  </div>
+</div>
+  </article>
+  
+  
+    <div class="card card-content categories-widget">
+    <div>
+     <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=1413374282&auto=1&height=66"></iframe>
+    </div>
+     
     </div>
 
+</div>
+
+          </aside>
+          <aside class="right-column">
+            <div class="sticky-widescreen">
+  
+  
+  <article class="card card-content toc-card">
+    <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>目录</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+  </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>最近文章</div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-02-13</div>
+        <a href="/2021/02/13/我的第一篇文章/"><div class="recent-posts-item-content">我的第一篇文章</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-02-13</div>
+        <a href="/2021/02/13/hello-world/"><div class="recent-posts-item-content">Hello World</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>Copyright ©
+          
+          2020 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a href="/" class="footer-link">宋楠的博客 </a>
+      </div>
+    </div>
+
+    
+    <div class="footer-dsc">
+
+
+    </div>
+    
+    
+    
+    
+      <div class="footer-dsc">
+        
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+        
+        <span>&nbsp;|&nbsp;</span>
+        
+        
+        本站总访客数<span id="busuanzi_value_site_uv"></span>次
+        
+      </div>
+      
+    
 </footer>
 
+  <a role="button" id="scrollbutton" class="basebutton"  aria-label="回到顶部">
+  <i class="iconfont icon-arrowleft button-icon"></i>
+</a>
+<a role="button" id="menubutton" class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a role="button" id="popbutton" class="basebutton" aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a role="button" id="darkbutton" class="basebutton darkwidget" aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a role="button" id="searchbutton" class="basebutton searchwidget" aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a>
 
+  
+  
+  
 
-    <!-- After footer scripts -->
-    <!-- jQuery -->
-<script src="//cdn.jsdelivr.net/npm/jquery@2.1.4/dist/jquery.min.js"></script>
+  
+  
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    
+<script src="//cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-svg.js"></script>
 
-<!-- For drop down -->
-<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  
 
-<!-- Bootstrap -->
-<script src="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
-<!-- Gallery -->
-<script src="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/js/lightgallery-all.min.js"></script>
-<!-- Busuanzi -->
-
-
-<!-- Search script -->
-
-<script src="/my_-blog/js/search.js"></script>
-
-<script type="text/javascript">
-    $(function () {
-        searchFunc( '/my_-blog/search.xml' , 'searchInput', 'searchResult');
-    });
+  
+  
+  <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img');
+    var i;
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a');
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'));
+      wrapper.setAttribute('aria-label', 'illustration');
+      wrapper.style.cssText = 'width: 100%; display: flex; justify-content: center;';
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt;
+      wrapper.dataset.nolink = true;
+      img[i].before(wrapper);
+      wrapper.append(img[i]);
+      var divWrap = document.createElement('div');
+      divWrap.classList.add('gallery');
+      wrapper.before(divWrap);
+      divWrap.append(wrapper);
+    }
+    baguetteBox.run('.gallery');
+  }
 </script>
-
-
-
+<script>loadScript("/js/lib/lightbox/baguetteBox.min.js", addImgLayout)</script>
+  
+  
+  
 <script src="/my_-blog/js/main.js"></script>
 
-
-
-    <!-- Search Modal -->
-    <!-- Modal -->
-<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-        <div class="modal-content overflow-auto">
-            <div class="modal-header">
-                <input type="text" class="form-control" placeholder="搜索关键词..." id="searchInput">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="modal-body">
-                <div id="searchResult">
-                    <div class="search-empty text-center text-muted p-5">
-                        <i class="far fa-meh"></i>
-                    </div>
-                </div>
-            </div> 
-        </div>
-    </div>
-</div>
-
-
+  
+  <script>loadScript("/js/lib/busuanzi.min.js")</script>
+  
+  
+  <script>
+    var addLazyload = function () {
+      var observer = lozad('.lozad', {
+        load: function (el) {
+          el.srcset = el.getAttribute('data-src');
+        },
+        loaded: function (el) {
+          el.classList.add('loaded');
+        }
+      });
+      observer.observe();
+    }
+  </script>
+  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
+  
+  
 </body>
+
 </html>
