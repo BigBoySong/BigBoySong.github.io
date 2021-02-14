@@ -728,6 +728,11 @@ body::after {
 .pullquote.right {
   text-align: right;
 }
+.post-body h1,
+.post-body h2 {
+  border-bottom: 1px solid var(--color-gray-250);
+  padding-bottom: 0.3em;
+}
 .table-container {
   overflow: auto;
   margin-bottom: 1rem;
@@ -903,7 +908,7 @@ body::after {
   z-index: 0;
   width: 100%;
   height: 100%;
-  background: url("https://w.wallhaven.cc/full/dp/wallhaven-dppk7g.jpg") no-repeat center/cover;
+  background: url("https://w.wallhaven.cc/full/rd/wallhaven-rd2jw1.png") no-repeat center/cover;
 }
 .header-banner-info {
   position: absolute;
@@ -1531,7 +1536,7 @@ body::after {
 }
 .highlight figcaption span:first-child::before {
   margin: 0 0.6rem 0 0;
-  color: #5e687b;
+  color: #959595;
 }
 .highlight.markdown figcaption span:first-child::before {
   content: 'markdown';
@@ -1670,8 +1675,8 @@ body::after {
   border-radius: 0.25rem;
   width: 100%;
   line-height: 1.7;
-  color: #abb2bf;
-  background-color: #282c34;
+  color: #f8f8f8;
+  background-color: #304148;
 }
 .highlight pre,
 .highlight code {
@@ -1686,11 +1691,10 @@ body::after {
 .highlight figcaption {
   position: relative;
   width: 100%;
-  color: #abb2bf;
-  background-color: #282c34;
+  color: #f8f8f8;
+  background-color: #304148;
   zoom: 1;
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
+  padding: 0.1rem 0;
 }
 .highlight figcaption:before,
 .highlight figcaption:after {
@@ -1703,7 +1707,7 @@ body::after {
 .highlight figcaption span:first-child {
   float: left;
   margin-left: 0.5rem;
-  color: #abb2bf;
+  color: #f8f8f8;
 }
 .highlight figcaption span.external-link {
   float: right;
@@ -1711,75 +1715,31 @@ body::after {
 }
 .highlight figcaption.custom {
   min-height: 1.5rem;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: box;
-  display: flex;
+  border-radius: 0.25rem;
 }
 .highlight figcaption.custom .custom-lang {
   float: left;
   margin: 0 0.6rem;
-  color: #5e687b;
-}
-.highlight figcaption.custom .custom-carbon {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: box;
-  display: flex;
-  margin: 0.2rem 0 0 0.5rem;
-  font-size: 0;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -o-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-}
-.highlight figcaption.custom .custom-carbon-dot {
-  display: inline-block;
-  margin: 0 4px;
-  border-radius: 50%;
-  width: 10px;
-  height: 10px;
-}
-.highlight figcaption.custom .custom-carbon-dot--red {
-  background-color: #ff5f56;
-}
-.highlight figcaption.custom .custom-carbon-dot--yellow {
-  background-color: #ffbd2e;
-}
-.highlight figcaption.custom .custom-carbon-dot--green {
-  background-color: #27c93f;
-}
-.highlight figcaption:not(.custom) {
-  background-color: #282c34;
-}
-.highlight figcaption:not(.custom) + .table-container td.gutter,
-.highlight figcaption:not(.custom) + table td.gutter {
-  display: table-cell;
+  color: #959595;
 }
 .highlight td.gutter {
-  border-right: 1px solid #3a404c;
+  border-right: 1px solid #40565f;
   padding: 0.4rem 0.6rem;
   width: 2rem;
-  background-color: #282c34;
-  display: none;
+  background-color: #304148;
+  border-radius: 0.25rem;
 }
 .highlight td.gutter pre {
   text-align: right;
   white-space: nowrap;
-  color: #5e687b;
+  color: #959595;
   background-color: inherit;
 }
 .highlight td.code {
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 0.6rem;
 }
 .highlight .marked {
-  background-color: #333842;
+  background-color: #394e56;
 }
 .highlight .emphasis {
   font-style: italic;
@@ -1788,11 +1748,11 @@ body::after {
   font-weight: bold;
 }
 .highlight .comment {
-  color: #5c6370;
+  color: #65737e;
 }
 .highlight .quote,
 .highlight .params {
-  color: #abb2bf;
+  color: #f8f8f8;
 }
 .highlight .selector-tag,
 .highlight .template-variable,
@@ -1801,7 +1761,7 @@ body::after {
 .highlight .regexp,
 .highlight .name,
 .highlight .tag {
-  color: #f45a5a;
+  color: #eb606b;
 }
 .highlight .builtin-name,
 .highlight .literal,
@@ -1809,12 +1769,12 @@ body::after {
 .highlight .type,
 .highlight .meta,
 .highlight .link {
-  color: #de812c;
+  color: #f99157;
 }
 .highlight .class .keyword:first-child + .title,
 .highlight .built_in,
 .highlight .attribute {
-  color: #eedc6e;
+  color: #fac863;
 }
 .highlight .class .keyword ~ .title,
 .highlight .string .template-variable,
@@ -1823,17 +1783,17 @@ body::after {
 .highlight .class,
 .highlight .subst,
 .highlight .regexp {
-  color: #56b6c2;
+  color: #5fb3b3;
 }
 .highlight .string,
 .highlight .symbol,
 .highlight .bullet,
 .highlight .addition {
-  color: #98c379;
+  color: #99c794;
 }
 .highlight .title,
 .highlight .section {
-  color: #4a98d8;
+  color: #69c;
 }
 .highlight .meta-keyword,
 .highlight .doctag,
@@ -1844,11 +1804,11 @@ body::after {
 .highlight .function,
 .highlight .tag .attr,
 .highlight .keyword {
-  color: #be74d5;
+  color: #c594c5;
 }
 .bash .meta,
 .rust .meta {
-  color: #5c6370;
+  color: #65737e;
 }
 .c\+\+ .built_in,
 .cpp .built_in,
@@ -1859,21 +1819,21 @@ body::after {
 .scss .variable,
 .styl .variable,
 .stylus .variable {
-  color: #abb2bf;
+  color: #f8f8f8;
 }
 .html .meta,
 .xml .meta,
 .yaml .attr,
 .yml .attr {
-  color: #f45a5a;
+  color: #eb606b;
 }
 .js .params,
 .javascript .params {
-  color: #de812c;
+  color: #f99157;
 }
 .json .attr,
 .swift .type {
-  color: #eedc6e;
+  color: #fac863;
 }
 .variable .variable,
 .bash .variable,
@@ -1882,13 +1842,13 @@ body::after {
 .c\# .meta,
 .css .number,
 .diff .meta {
-  color: #56b6c2;
+  color: #5fb3b3;
 }
 .md .section,
 .markdown .section,
 .py .string .meta,
 .python .string .meta {
-  color: #98c379;
+  color: #99c794;
 }
 .bash .built_in,
 .css .built_in,
@@ -1898,20 +1858,20 @@ body::after {
 .shell .meta,
 .shell .keyword,
 .shell .built_in {
-  color: #4a98d8;
+  color: #69c;
 }
 .ini .attr,
 .objectivec .meta,
 .yaml .type,
 .yml .type {
-  color: #be74d5;
+  color: #c594c5;
 }
 .diff .addition {
-  color: #292;
+  color: #99c794;
   background-color: transparent;
 }
 .diff .deletion {
-  color: #d44;
+  color: #eb606b;
   background-color: transparent;
 }
 .ending {
@@ -2140,7 +2100,7 @@ body::after {
   cursor: pointer;
 }
 .copy-button i {
-  color: #5e687b;
+  color: #959595;
 }
 .sticky-top {
   position: absolute;
@@ -2206,7 +2166,7 @@ body::after {
 }
 .paginator .current {
   color: #f4f5f5;
-  background-color: #49b1f5;
+  background-color: #eb606b;
 }
 .paginator .current:hover {
   border-color: transparent;
