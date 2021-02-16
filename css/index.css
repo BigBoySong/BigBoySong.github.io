@@ -1304,12 +1304,6 @@ blockquote footer cite:before {
     width: 100% !important;
   }
 }
-@media screen and (min-width: 900px) {
-  .layout > div:first-child {
-    -o-box-ordinal-group: 2;
-    order: 2;
-  }
-}
 .layout.hide-aside {
   max-width: 1000px;
 }
@@ -1566,7 +1560,7 @@ blockquote footer cite:before {
 }
 @media screen and (min-width: 900px) {
   #aside-content {
-    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 @media screen and (max-width: 900px) {
@@ -2025,6 +2019,13 @@ blockquote footer cite:before {
   background-position: bottom;
   background-size: cover;
 }
+#footer:before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  content: '';
+}
 #footer-wrap {
   position: relative;
   padding: 2rem 1rem;
@@ -2441,6 +2442,139 @@ _:future,
   text-shadow: 0.05rem 0.05rem 0.1rem rgba(0,0,0,0.3);
   font-size: 0.78em;
   cursor: pointer;
+}
+.loading-bg,
+#loading-box .loading-left-bg,
+#loading-box .loading-right-bg {
+  position: fixed;
+  z-index: 1000;
+  width: 50%;
+  height: 100%;
+  background-color: var(--preloader-bg);
+}
+#loading-box .loading-right-bg {
+  right: 0;
+}
+#loading-box .spinner-box {
+  position: fixed;
+  z-index: 1001;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -o-box-pack: center;
+  justify-content: center;
+  -o-box-align: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+#loading-box .spinner-box .configure-border-1 {
+  position: absolute;
+  padding: 3px;
+  width: 115px;
+  height: 115px;
+  background: #ffab91;
+  -webkit-animation: configure-clockwise 3s ease-in-out 0s infinite alternate;
+  animation: configure-clockwise 3s ease-in-out 0s infinite alternate;
+}
+#loading-box .spinner-box .configure-border-2 {
+  left: -115px;
+  padding: 3px;
+  width: 115px;
+  height: 115px;
+  background: #3ff9dc;
+  transform: rotate(45deg);
+  -webkit-animation: configure-xclockwise 3s ease-in-out 0s infinite alternate;
+  animation: configure-xclockwise 3s ease-in-out 0s infinite alternate;
+}
+#loading-box .spinner-box .loading-word {
+  position: absolute;
+  color: var(--preloader-color);
+  font-size: 0.8rem;
+}
+#loading-box .spinner-box .configure-core {
+  width: 100%;
+  height: 100%;
+  background-color: var(--preloader-bg);
+}
+#loading-box.loaded .loading-left-bg {
+  transition: all 0.5s;
+  transform: translate(-100%, 0);
+}
+#loading-box.loaded .loading-right-bg {
+  transition: all 0.5s;
+  transform: translate(100%, 0);
+}
+#loading-box.loaded .spinner-box {
+  display: none;
+}
+@-webkit-keyframes configure-clockwise {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes configure-clockwise {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes configure-xclockwise {
+  0% {
+    transform: rotate(45deg);
+  }
+  25% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(-135deg);
+  }
+  75% {
+    transform: rotate(-225deg);
+  }
+  100% {
+    transform: rotate(-315deg);
+  }
+}
+@keyframes configure-xclockwise {
+  0% {
+    transform: rotate(45deg);
+  }
+  25% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(-135deg);
+  }
+  75% {
+    transform: rotate(-225deg);
+  }
+  100% {
+    transform: rotate(-315deg);
+  }
 }
 #pagination {
   overflow: hidden;
@@ -3745,7 +3879,7 @@ blockquote.pullquote.right {
   --font-color: rgba(255,255,255,0.7);
   --hr-border: rgba(255,255,255,0.4);
   --hr-before-color: rgba(255,255,255,0.7);
-  --search-bg: #121212;
+  --search-bg: rgba(18,18,18,0.671);
   --search-input-color: rgba(255,255,255,0.7);
   --search-result-title: rgba(255,255,255,0.9);
   --preloader-bg: #0d0d0d;
@@ -3755,7 +3889,7 @@ blockquote.pullquote.right {
   --tab-botton-color: rgba(255,255,255,0.7);
   --tab-button-hover-bg: #383838;
   --tab-button-active-bg: #121212;
-  --card-bg: #121212;
+  --card-bg: rgba(18,18,18,0.671);
   --sidebar-bg: #121212;
   --btn-hover-color: #787878;
   --btn-color: rgba(255,255,255,0.7);
