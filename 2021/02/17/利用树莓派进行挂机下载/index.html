@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>利用树莓派进行挂机下载 | 大侠宋楠哥的博客</title><meta name="keywords" content="retropie"><meta name="author" content="大侠宋楠哥"><meta name="copyright" content="大侠宋楠哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="记录利用树莓派进行挂机下载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用树莓派进行挂机下载">
+<meta property="og:url" content="http://songnan05.gitee.io/2021/02/17/%E5%88%A9%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E8%BF%9B%E8%A1%8C%E6%8C%82%E6%9C%BA%E4%B8%8B%E8%BD%BD/index.html">
+<meta property="og:site_name" content="大侠宋楠哥的博客">
+<meta property="og:description" content="记录利用树莓派进行挂机下载">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-02-17T07:43:00.000Z">
+<meta property="article:modified_time" content="2021-02-17T07:30:54.012Z">
+<meta property="article:author" content="大侠宋楠哥">
+<meta property="article:tag" content="retropie">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://songnan05.gitee.io/2021/02/17/%E5%88%A9%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E8%BF%9B%E8%A1%8C%E6%8C%82%E6%9C%BA%E4%B8%8B%E8%BD%BD/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: false,
+  postUpdate: '2021-02-17 15:30:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="大侠宋楠哥的博客" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word" style="display: none;"></div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://pic3.zhimg.com/v2-1ab107e957b62f7921c4f491e36d55fd_xl.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 归类</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera-retro"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comment"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">大侠宋楠哥的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 归类</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera-retro"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comment"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">利用树莓派进行挂机下载</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-17T07:43:00.000Z" title="发表于 2021-02-17 15:43:00">2021-02-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-17T07:30:54.012Z" title="更新于 2021-02-17 15:30:54">2021-02-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src="https://shumeipai.nxez.com/wp-content/uploads/2019/09/20190916225540815.png" alt="img"></p>
+<blockquote>
+<p>本文转自 <a target="_blank" rel="noopener" href="https://blowingdust.com/raspberry-downloader.html">Dust’s Blog</a></p>
+</blockquote>
+<p>一直有买 NAS 做下载姬的想法，但见过太多人买回家吃灰的例子，而且我的松鼠症并不严重，所以犹豫着。直到听闻树莓派4代发售，价格比 NAS 便宜，正好家里也有闲置 U 盘，思来想去，果然还是树莓派比较适合老子.jpg</p>
+<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><p>在淘宝找到相关店家，根据自己的需要选择相应套餐，因为需要预订，大概一周后到货。</p>
+<p>树莓派到手后，先将 Raspbian 系统镜像写入 micro SD 卡，推荐使用 <a target="_blank" rel="noopener" href="https://shumeipai.nxez.com/2019/04/17/write-pi-sd-card-image-using-etcher-on-windows-linux-mac.html">balenaEtcher</a>，十分方便。</p>
+<p><img src="https://shumeipai.nxez.com/wp-content/uploads/2019/09/20190916225540286.jpg" alt="img"></p>
+<p>之后配置远程 SSH 和 wifi（如果选择直接在树莓派上外接显示器和键盘就不用进行这一步），简单来说就是在根目录新建 SSH 文件和 wpa_supplicant.conf 文件，文件内容参考 <a target="_blank" rel="noopener" href="https://shumeipai.nxez.com/2017/09/13/raspberry-pi-network-configuration-before-boot.html">教程</a> 。</p>
+<p>配置好后，插入 SD 卡启动树莓派，在路由后台管理中找到树莓派的 IP。</p>
+<p><img src="https://shumeipai.nxez.com/wp-content/uploads/2019/09/20190916225540440.png" alt="img"></p>
+<p>SSH 远程登录，默认用户名 pi，默认密码 raspberry，完成。（记得修改默认密码</p>
+<p><img src="https://shumeipai.nxez.com/wp-content/uploads/2019/09/20190916225540813.png" alt="img"></p>
+<h2 id="2-配置"><a href="#2-配置" class="headerlink" title="2. 配置"></a>2. 配置</h2><h3 id="1-更新升级系统"><a href="#1-更新升级系统" class="headerlink" title="(1) 更新升级系统"></a>(1) 更新升级系统</h3><p>由于国内网络环境，需要修改源以免更新速度缓慢，可以 <a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/raspbian/">据此</a> 修改（感谢清华源）。</p>
+<p>Raspbian 基于 Debian，使用 <code>apt upgrade</code> 更新升级。如遇到更新途中卡死、Ctrl+C 无法终止的情况，使用 kill 结束进程，恢复，重启，再更新。</p>
+<h3 id="2-格式化-U-盘"><a href="#2-格式化-U-盘" class="headerlink" title="(2) 格式化 U 盘"></a>(2) 格式化 U 盘</h3><p>U 盘用于存放我们的下载文件，使用 exFAT 格式以便存储超过 4 GB 的文件。sda1 是我的 U 盘设备，请根据自己情况修改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt &#96;&#96;install&#96; &#96;exfat-fuse&#96;&#96;# 若提示未找到 mkfs.exfat，可将 &#x2F;usr&#x2F;sbin 加入 PATH。&#96;&#96;mkfs.exfat &#96;&#96;&#x2F;dev&#x2F;sda1</span><br></pre></td></tr></table></figure>
+<p>接着修改 /etc/fstab，让系统每次启动都自动挂载 U 盘。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># 追加写入，勿删改文件内其它内容&#96;&#96;&#x2F;dev&#x2F;sda1&#96; &#96;&#x2F;mnt&#x2F;udisk&#96; &#96;exfat rw,defaults 0 0</span><br></pre></td></tr></table></figure>
+<p>最后使用 <code>mount -a</code> 重新载入配置，检查有无报错。</p>
+<p>额外的，我还将 U 盘路径软链接到用户目录以方便查看。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln&#96; &#96;-s &#96;&#96;&#x2F;mnt&#x2F;udisk&#96; &#96;~&#96;&#96;&#x2F;downloads&#x2F;udisk</span><br></pre></td></tr></table></figure>
+<h3 id="3-编译安装-qBittorrent"><a href="#3-编译安装-qBittorrent" class="headerlink" title="(3) 编译安装 qBittorrent"></a>(3) 编译安装 qBittorrent</h3><p>其实软件仓库中有 qBittorrent，但我需要的是 <a target="_blank" rel="noopener" href="https://github.com/c0re100/qBittorrent-Enhanced-Edition/">qBittorrent-Enhanced-Edition</a>，可以自动封禁如迅雷吸血客户端的 IP。如果你没有这个需求，直接 <code>apt install qBittorrent</code> 即可（或者安装 qBittorrent-nox，无需 GUI）。</p>
+<p>编译需要依赖 Boost、Qt5 等，安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt &#96;&#96;install&#96; &#96;qt5-default qttools5-dev-tools libboost1.67-all-dev libtorrent-rasterbar-dev</span><br></pre></td></tr></table></figure>
+<p>克隆源码，在其目录执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># --disable-gui: 不需要 GUI&#96;&#96;# 如果提示无法找到 Boost，需加 --with-boost-libdir 参数&#96;&#96;.&#96;&#96;&#x2F;configure&#96; &#96;--disable-gui --with-boost-libdir&#x3D;&#96;&#96;&#x2F;usr&#x2F;lib&#x2F;arm-linux-gnueabihf&#96;&#96;make&#96; &#96;-j$(nproc)&#96;&#96;make&#96; &#96;install</span><br></pre></td></tr></table></figure>
+<p>由于树莓派孱弱的性能，编译过程可能需要十多分钟。</p>
+<p>之后启动 qBittorrent，浏览器远程访问，默认端口 8080，用户名 admin，密码 adminadmin。记得改密码。</p>
+<p>配置一番后就可以开始下载了。</p>
+<p><img src="https://shumeipai.nxez.com/wp-content/uploads/2019/09/20190916225540815.png" alt="img"></p>
+<h3 id="4-安装-samba"><a href="#4-安装-samba" class="headerlink" title="(4) 安装 samba"></a>(4) 安装 samba</h3><p>为与 Windows 共享文件，需安装 samba，<a target="_blank" rel="noopener" href="https://www.raspberrypi.org/documentation/remote-access/samba.md">官方</a> 和网上其它地方都有教程，不细述。</p>
+<p>值得注意的是，如果你和我一样使用了软链接，还需要在 samba 配置文件加入如下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[global]&#96;&#96;allow insecure wide links &#x3D; yes&#96; &#96;[share]&#96;&#96;follow symlinks &#x3D; yes&#96;&#96;wide links &#x3D; yes</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://unix.stackexchange.com/a/137192">来源</a></p>
+<p>改好配置后，<code>systemctl restart smdb.service</code> 重启 samba。</p>
+<h2 id="3-使用情况"><a href="#3-使用情况" class="headerlink" title="3. 使用情况"></a>3. 使用情况</h2><p>室温 30℃，风冷闲时 44℃。</p>
+<p>下载速度没严格测试，根据已下载的情况，最高 9 MiB/s，与资源热度和网速有关，应该不是上限。没有测试内网文件传输速度。</p>
+<p>测试 5G 大小 1080P 视频文件，可流畅播放，但如果大幅跳转有短暂卡顿。</p>
+<p>总的来说还行吧，作为轻量下载姬，自分满足。</p>
+<p>附：如果同时进行 BT 和 PT 下载，请分开安装。推荐使用 docker（<a target="_blank" rel="noopener" href="https://blog.docker.com/2019/03/happy-pi-day-docker-raspberry-pi/">官方安装教程</a>），因为 PT 一般有客户端白名单，所以 docker 直接下载 qBittorrent 或其它官方 BT 客户端镜像即可。</p>
+<p>注：本文并非详细的安装指南，如有未描述清楚的地方请查阅其它资料。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">大侠宋楠哥</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://songnan05.gitee.io/2021/02/17/%E5%88%A9%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E8%BF%9B%E8%A1%8C%E6%8C%82%E6%9C%BA%E4%B8%8B%E8%BD%BD/">http://songnan05.gitee.io/2021/02/17/利用树莓派进行挂机下载/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://songnan05.gitee.io" target="_blank">大侠宋楠哥的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/retropie/">retropie</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/"><img class="prev-cover" src="https://shumeipai.nxez.com/wp-content/uploads/2019/12/20191210220013287.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">树莓派计划任务的配置方法</div></div></a></div><div class="next-post pull-right"><a href="/2021/02/17/%E4%BD%BF%E7%94%A8PHP%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0%E6%A0%91%E8%8E%93%E6%B4%BE/"><img class="next-cover" src="https://shumeipai.nxez.com/wp-content/uploads/2015/03/20150315204719845-0.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">使用PHP上传文件到树莓派</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/02/17/树莓派上安装和配置 vsftpd 的教程/" title="树莓派上安装和配置 vsftpd 的教程"><img class="cover" src="https://shumeipai.nxez.com/wp-content/uploads/2021/02/20210204205906879.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-17</div><div class="title">树莓派上安装和配置 vsftpd 的教程</div></div></a></div><div><a href="/2021/02/14/树莓派制作游戏机/" title="制作树莓派的游戏机系统"><img class="cover" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2820133979,3469672994&fm=26&gp=0.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-14</div><div class="title">制作树莓派的游戏机系统</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://pic3.zhimg.com/v2-1ab107e957b62f7921c4f491e36d55fd_xl.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">大侠宋楠哥</div><div class="author-info__description">记录人生感动</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/BigBoySong"><i class="fab fa-github"></i><span>访问我的GitHub</span></a><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://gitee.com/songnan05"><i></i><span>访问我的码云</span></a><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://www.zhihu.com/people/song-nan-22-41"><i></i><span>访问我的知乎</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" title="树莓派计划任务的配置方法"><img src="https://shumeipai.nxez.com/wp-content/uploads/2019/12/20191210220013287.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="树莓派计划任务的配置方法"/></a><div class="content"><a class="title" href="/2021/02/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" title="树莓派计划任务的配置方法">树莓派计划任务的配置方法</a><time datetime="2021-02-17T07:47:03.688Z" title="发表于 2021-02-17 15:47:03">2021-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/17/%E5%88%A9%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E8%BF%9B%E8%A1%8C%E6%8C%82%E6%9C%BA%E4%B8%8B%E8%BD%BD/" title="利用树莓派进行挂机下载"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用树莓派进行挂机下载"/></a><div class="content"><a class="title" href="/2021/02/17/%E5%88%A9%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E8%BF%9B%E8%A1%8C%E6%8C%82%E6%9C%BA%E4%B8%8B%E8%BD%BD/" title="利用树莓派进行挂机下载">利用树莓派进行挂机下载</a><time datetime="2021-02-17T07:43:00.000Z" title="发表于 2021-02-17 15:43:00">2021-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/17/%E4%BD%BF%E7%94%A8PHP%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0%E6%A0%91%E8%8E%93%E6%B4%BE/" title="使用PHP上传文件到树莓派"><img src="https://shumeipai.nxez.com/wp-content/uploads/2015/03/20150315204719845-0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用PHP上传文件到树莓派"/></a><div class="content"><a class="title" href="/2021/02/17/%E4%BD%BF%E7%94%A8PHP%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0%E6%A0%91%E8%8E%93%E6%B4%BE/" title="使用PHP上传文件到树莓派">使用PHP上传文件到树莓派</a><time datetime="2021-02-17T07:41:38.546Z" title="发表于 2021-02-17 15:41:38">2021-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/17/%E6%97%A0%E5%B1%8F%E5%B9%95%E5%92%8C%E9%94%AE%E7%9B%98%E9%85%8D%E7%BD%AE%E6%A0%91%E8%8E%93%E6%B4%BEWiFi%E5%92%8CSSH/" title="无屏幕和键盘配置树莓派WiFi和SSH"><img src="https://shumeipai.nxez.com/wp-content/uploads/2017/03/20170301115718410-0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无屏幕和键盘配置树莓派WiFi和SSH"/></a><div class="content"><a class="title" href="/2021/02/17/%E6%97%A0%E5%B1%8F%E5%B9%95%E5%92%8C%E9%94%AE%E7%9B%98%E9%85%8D%E7%BD%AE%E6%A0%91%E8%8E%93%E6%B4%BEWiFi%E5%92%8CSSH/" title="无屏幕和键盘配置树莓派WiFi和SSH">无屏幕和键盘配置树莓派WiFi和SSH</a><time datetime="2021-02-17T07:38:14.618Z" title="发表于 2021-02-17 15:38:14">2021-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/17/Pi%20Dashboard%20%E5%AE%89%E8%A3%85/" title="Pi Dashboard (Pi 仪表盘) 安装"><img src="https://shumeipai.nxez.com/wp-content/uploads/2017/08/20170831005933963-0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Pi Dashboard (Pi 仪表盘) 安装"/></a><div class="content"><a class="title" href="/2021/02/17/Pi%20Dashboard%20%E5%AE%89%E8%A3%85/" title="Pi Dashboard (Pi 仪表盘) 安装">Pi Dashboard (Pi 仪表盘) 安装</a><time datetime="2021-02-17T07:33:15.616Z" title="发表于 2021-02-17 15:33:15">2021-02-17</time></div></div></div></div></div></div></main><footer id="footer" style="background: rgba(13,13,13,0.30)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 大侠宋楠哥</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'lfjN2EGXPlRACxqsfALaGr06-gzGzoHsz',
+      appKey: 'VThhhNz4EuqeSKF6YHAddIFp',
+      placeholder: 'Please leave your footprints',
+      avatar: 'mp',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script>document.getElementByClass("js-pjax").style.display="none"</script><script>document.getElementById("nav").className="show"</script><script defer src="/live2d-widget/autoload.js"></script><script type="text/javascript" color="220,220,220" opacity='150' zIndex="-1" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><link rel="stylesheet" href="/assets/css/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

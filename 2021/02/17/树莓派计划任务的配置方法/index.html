@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>树莓派计划任务的配置方法 | 大侠宋楠哥的博客</title><meta name="keywords" content="crontab"><meta name="author" content="大侠宋楠哥"><meta name="copyright" content="大侠宋楠哥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="记录树莓派计划任务的配置方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派计划任务的配置方法">
+<meta property="og:url" content="http://songnan05.gitee.io/2021/02/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="大侠宋楠哥的博客">
+<meta property="og:description" content="记录树莓派计划任务的配置方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://shumeipai.nxez.com/wp-content/uploads/2019/12/20191210220013287.png">
+<meta property="article:published_time" content="2021-02-17T07:47:03.688Z">
+<meta property="article:modified_time" content="2021-02-17T07:53:07.819Z">
+<meta property="article:author" content="大侠宋楠哥">
+<meta property="article:tag" content="crontab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shumeipai.nxez.com/wp-content/uploads/2019/12/20191210220013287.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://songnan05.gitee.io/2021/02/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: false,
+  postUpdate: '2021-02-17 15:53:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="大侠宋楠哥的博客" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word" style="display: none;"></div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://pic3.zhimg.com/v2-1ab107e957b62f7921c4f491e36d55fd_xl.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 归类</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera-retro"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comment"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://shumeipai.nxez.com/wp-content/uploads/2019/12/20191210220013287.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">大侠宋楠哥的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 归类</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera-retro"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comment"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">树莓派计划任务的配置方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-17T07:47:03.688Z" title="发表于 2021-02-17 15:47:03">2021-02-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-17T07:53:07.819Z" title="更新于 2021-02-17 15:53:07">2021-02-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">442</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src="https://shumeipai.nxez.com/wp-content/uploads/2019/12/20191210220013287.png" alt="img"></p>
+<p>Unix 系统包括树莓派的 Raspbian 有一个叫 Cron 的工具用来配置计划任务。它用来设置一些命令或脚本，定时或者间隔某一个时间运行一次。大到每天午夜备份指定目录，小到每小时记录 CPU 信息均可用它实现。</p>
+<p>使用 <code>crontab</code> 命令来操作任务计划表，这张表是基于用户的，也就是说每个用户（包括 root 用户）都有一套自己的 <code>crontab</code>。</p>
+<h2 id="Cron-GUI"><a href="#Cron-GUI" class="headerlink" title="Cron GUI"></a>Cron GUI</h2><p>Cron 也有一个图形界面的应用，通过下面的命令来安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install gnome-schedule</span><br></pre></td></tr></table></figure>
+<p>然后就可以在树莓派菜单中找到 <strong>Scheduled Tasks</strong> 来启动它。</p>
+<h2 id="编辑-crontab"><a href="#编辑-crontab" class="headerlink" title="编辑 crontab"></a>编辑 crontab</h2><p>下面的命令进入编辑 cron table 的操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+<h3 id="选择编辑器"><a href="#选择编辑器" class="headerlink" title="选择编辑器"></a>选择编辑器</h3><p>首次运行时会提示你选择一个编辑器，如果不知道选哪个就直接回车选择 Nano 编辑器。<br><img src="https://shumeipai.nxez.com/wp-content/uploads/2019/12/20191211195212585.png" alt="img"></p>
+<h3 id="添加计划任务"><a href="#添加计划任务" class="headerlink" title="添加计划任务"></a>添加计划任务</h3><p>每一条计划任务为一行，由 6 个部分构成。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># m h dom mon dow  command``# * * * * * command to execute（要执行的指令）``# ┬ ┬ ┬ ┬ ┬``# │ │ │ │ │``# │ │ │ │ │``# │ │ │ │ └───── 星期 (0 - 7) (0 到 6 分别表示星期天到星期六；7 和 0 都代表星期天)``# │ │ │ └────────── 月 (1 - 12)``# │ │ └─────────────── 日 (1 - 31)``# │ └──────────────────── 小时 (0 - 23)``# └───────────────────────── 分钟 (0 - 59)</span></span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 0 * * * &#x2F;home&#x2F;pi&#x2F;backup.sh</span><br></pre></td></tr></table></figure>
+<p>它表示每天 0 点 0 分运行 <code>backup.sh</code> 脚本。</p>
+<h3 id="查看计划任务"><a href="#查看计划任务" class="headerlink" title="查看计划任务"></a>查看计划任务</h3><p>使用下面的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -l</span><br></pre></td></tr></table></figure>
+<h3 id="在重启时运行任务"><a href="#在重启时运行任务" class="headerlink" title="在重启时运行任务"></a>在重启时运行任务</h3><p>如果需要在树莓派每次启动时都运行一条命令，可以这么做：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@reboot python &#x2F;home&#x2F;pi&#x2F;myscript.py</span><br></pre></td></tr></table></figure>
+<p>其中使用 @reboot 替代了日期和时间。如果你希望命令仅仅在后台运行，则可以加一个 &amp; 符号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@reboot python &#x2F;home&#x2F;pi&#x2F;myscript.py &amp;</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">大侠宋楠哥</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://songnan05.gitee.io/2021/02/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/">http://songnan05.gitee.io/2021/02/17/树莓派计划任务的配置方法/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://songnan05.gitee.io" target="_blank">大侠宋楠哥的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/crontab/">crontab</a></div><div class="post_share"><div class="social-share" data-image="https://shumeipai.nxez.com/wp-content/uploads/2019/12/20191210220013287.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/02/17/%E5%88%A9%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E8%BF%9B%E8%A1%8C%E6%8C%82%E6%9C%BA%E4%B8%8B%E8%BD%BD/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">利用树莓派进行挂机下载</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://pic3.zhimg.com/v2-1ab107e957b62f7921c4f491e36d55fd_xl.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">大侠宋楠哥</div><div class="author-info__description">记录人生感动</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/BigBoySong"><i class="fab fa-github"></i><span>访问我的GitHub</span></a><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://gitee.com/songnan05"><i></i><span>访问我的码云</span></a><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://www.zhihu.com/people/song-nan-22-41"><i></i><span>访问我的知乎</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" title="树莓派计划任务的配置方法"><img src="https://shumeipai.nxez.com/wp-content/uploads/2019/12/20191210220013287.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="树莓派计划任务的配置方法"/></a><div class="content"><a class="title" href="/2021/02/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" title="树莓派计划任务的配置方法">树莓派计划任务的配置方法</a><time datetime="2021-02-17T07:47:03.688Z" title="发表于 2021-02-17 15:47:03">2021-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/17/%E5%88%A9%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E8%BF%9B%E8%A1%8C%E6%8C%82%E6%9C%BA%E4%B8%8B%E8%BD%BD/" title="利用树莓派进行挂机下载"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用树莓派进行挂机下载"/></a><div class="content"><a class="title" href="/2021/02/17/%E5%88%A9%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E8%BF%9B%E8%A1%8C%E6%8C%82%E6%9C%BA%E4%B8%8B%E8%BD%BD/" title="利用树莓派进行挂机下载">利用树莓派进行挂机下载</a><time datetime="2021-02-17T07:43:00.000Z" title="发表于 2021-02-17 15:43:00">2021-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/17/%E4%BD%BF%E7%94%A8PHP%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0%E6%A0%91%E8%8E%93%E6%B4%BE/" title="使用PHP上传文件到树莓派"><img src="https://shumeipai.nxez.com/wp-content/uploads/2015/03/20150315204719845-0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用PHP上传文件到树莓派"/></a><div class="content"><a class="title" href="/2021/02/17/%E4%BD%BF%E7%94%A8PHP%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0%E6%A0%91%E8%8E%93%E6%B4%BE/" title="使用PHP上传文件到树莓派">使用PHP上传文件到树莓派</a><time datetime="2021-02-17T07:41:38.546Z" title="发表于 2021-02-17 15:41:38">2021-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/17/%E6%97%A0%E5%B1%8F%E5%B9%95%E5%92%8C%E9%94%AE%E7%9B%98%E9%85%8D%E7%BD%AE%E6%A0%91%E8%8E%93%E6%B4%BEWiFi%E5%92%8CSSH/" title="无屏幕和键盘配置树莓派WiFi和SSH"><img src="https://shumeipai.nxez.com/wp-content/uploads/2017/03/20170301115718410-0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无屏幕和键盘配置树莓派WiFi和SSH"/></a><div class="content"><a class="title" href="/2021/02/17/%E6%97%A0%E5%B1%8F%E5%B9%95%E5%92%8C%E9%94%AE%E7%9B%98%E9%85%8D%E7%BD%AE%E6%A0%91%E8%8E%93%E6%B4%BEWiFi%E5%92%8CSSH/" title="无屏幕和键盘配置树莓派WiFi和SSH">无屏幕和键盘配置树莓派WiFi和SSH</a><time datetime="2021-02-17T07:38:14.618Z" title="发表于 2021-02-17 15:38:14">2021-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/17/Pi%20Dashboard%20%E5%AE%89%E8%A3%85/" title="Pi Dashboard (Pi 仪表盘) 安装"><img src="https://shumeipai.nxez.com/wp-content/uploads/2017/08/20170831005933963-0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Pi Dashboard (Pi 仪表盘) 安装"/></a><div class="content"><a class="title" href="/2021/02/17/Pi%20Dashboard%20%E5%AE%89%E8%A3%85/" title="Pi Dashboard (Pi 仪表盘) 安装">Pi Dashboard (Pi 仪表盘) 安装</a><time datetime="2021-02-17T07:33:15.616Z" title="发表于 2021-02-17 15:33:15">2021-02-17</time></div></div></div></div></div></div></main><footer id="footer" style="background: rgba(13,13,13,0.30)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 大侠宋楠哥</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'lfjN2EGXPlRACxqsfALaGr06-gzGzoHsz',
+      appKey: 'VThhhNz4EuqeSKF6YHAddIFp',
+      placeholder: 'Please leave your footprints',
+      avatar: 'mp',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script>document.getElementByClass("js-pjax").style.display="none"</script><script>document.getElementById("nav").className="show"</script><script defer src="/live2d-widget/autoload.js"></script><script type="text/javascript" color="220,220,220" opacity='150' zIndex="-1" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><link rel="stylesheet" href="/assets/css/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
